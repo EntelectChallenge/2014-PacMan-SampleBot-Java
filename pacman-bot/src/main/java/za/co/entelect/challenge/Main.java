@@ -86,7 +86,7 @@ public class Main {
                 for (int y = 0; y < WIDTH; y++) {
                     output += maze[x][y];
                 }
-                if (x != HEIGHT - 1) output += ('\n');
+                if (x != HEIGHT - 1) output += ("\r\n");
             }
             writer.print(output);
             writer.close();
