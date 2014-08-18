@@ -32,5 +32,55 @@
             </plugin>
         </plugins>
     </build>
+	
+	<profiles>
+		<profile>
+			<id>dist</id>
+			<properties>
+				<bot.name>sampleBot</bot.name>
+				<dist.folder>${project.build.directory}/dist</dist.folder>
+
+			</properties>
+			
+			<build>
+				<plugins>
+					<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.7</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<configuration>
+							<target>								
+								<copy todir="${dist.folder}">
+									<fileset dir=".">
+										<include name="*.bat" />
+										<include name="readme.*" />
+										<include name="pom.xml" />
+									</fileset>
+									
+								</copy>
+								 
+								<copy todir="${dist.folder}/src">
+									<fileset dir="./src">
+										<include name="**/*" />										
+									</fileset>
+								</copy>
+								
+								<zip destfile="${project.build.directory}/${bot.name}.zip" basedir="${dist.folder}">
+								</zip>						
+
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 </project>
